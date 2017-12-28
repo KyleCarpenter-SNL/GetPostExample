@@ -9,18 +9,18 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if(!Page.IsPostBack)
+        {
+            string[] numbers = new string[] { "one", "two", "three", "four", "five" };
+            DD.DataSource = numbers;
+            DD.DataBind();
 
+            DD.SelectedIndex = 0;
+        }
     }
 
-    [System.Web.Services.WebMethod]
-    public static List<string> GetNameData()
+    protected void button_Click(object sender, EventArgs e)
     {
-        List<string> names = new List<string>();
-        names.Add("John");
-        names.Add("Paul");
-        names.Add("George");
-        names.Add("Ringo");
-
-        return names;
+        label.Text = DD.SelectedValue;
     }
 }
